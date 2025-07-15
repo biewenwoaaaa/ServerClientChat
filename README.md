@@ -1,5 +1,5 @@
 # ServerClientChat
-本项目是 `CMake` 构建管理，采用C++17标准，依赖 `Muduo` 网络库、`MySQL++` 数据访问库、`fmt` 格式化库、`Redis++` 客户端库，运行在Linux环境下的网络聊天服务程序
+本项目由 `CMake` 构建管理，采用C++17标准，依赖 `Muduo` 网络库、`MySQL++` 数据访问库、`fmt` 格式化库、`Redis++` 客户端库，运行在Linux环境下的网络聊天服务程序
 
 ### 服务器端的项目依赖
 
@@ -22,9 +22,9 @@
 | 路径                              | 含义或来源                         |
 | ------------------------------- | ----------------------------- |
 | `${PROJECT_SOURCE_DIR}/include` | 项目自定义头文件                      |
-| `/usr/include/mysql++`          | 系统安装的 MySQL++ 库头文件            |
+| `/usr/include/mysql++`          | 安装的 MySQL++ 库头文件            |
 | `/usr/include/mysql`            | MySQL 客户端基础头文件（libmysql）      |
-| `/home/g/muduo/`                | 注意Ubuntu上只能通过源码编译Muduo库 |
+| `/home/g/muduo/`                | Ubuntu上只能通过源码编译Muduo库 |
 
 ---
 
@@ -40,8 +40,8 @@ muduo 在该路径下进行编译并链接
 
 
 ### 客户端的项目依赖
-由于已提取共享的数据类型与方法定义，因此项目依赖和服务端相同，具体可参考Client端的CMakeLists.txt
-## **额外说明：**
+由于已提取公共的数据类型与方法定义，因此项目依赖和服务端相同，具体可参考Client端的CMakeLists.txt
+## **tips：**
 
 * 编译目标输出路径为 `${PROJECT_SOURCE_DIR}/bin`
-* Debug 模式下会生成 `*_d` 可执行文件（加了 DEBUG\_POSTFIX）
+* Debug 模式下会生成 `*_d` 可执行文件（CMakeLists.txt中加了 DEBUG\_POSTFIX）

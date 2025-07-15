@@ -18,53 +18,51 @@ public:
     using Redis_ConnectionOptions = sw::redis::ConnectionOptions;
 
 public:
-    // 构造函数
     explicit RedisModel(const std::string &host = "127.0.0.1",
                         int port = 6379,
                         const std::string &password = "",
                         int db = 0);
 
-    // 析构函数
     ~RedisModel();
 
-    // 禁用拷贝
+   
     RedisModel(const RedisModel &) = delete;
     RedisModel &operator=(const RedisModel &) = delete;
 
-    // 发布消息
     bool m_publish(const std::string &channel, const std::string &message);
 
-    // 订阅频道
+    // subscribe channel
     bool m_subscribe(const std::string &channel, MessageCallback &&callback);
 
-    // 模式订阅
+    // subscribe pattern channel
     bool m_psubscribe(const std::string &pattern, PatternMessageCallback &&callback);
 
-    // 取消订阅频道
+    // unsubscribe channel
     bool m_unsubscribe(const std::string &channel);
 
-    // 取消模式订阅
+    // unsubscribe pattern channel
     bool m_punsubscribe(const std::string &pattern);
 
-    // 开始监听消息
+    // start listening for messages
     void m_start();
 
-    // 停止监听
+    // stop listening for messages
     void m_stop();
 
-    // 检查是否正在运行
+    // check if the subscriber is running
     bool m_isRunning() const;
 
-    // 获取订阅的频道数量
+    // get the number of subscribed channels
     size_t m_getChannelCount();
 
-    // 获取模式订阅数量
+    // get the number of subscribed patterns
     size_t m_getPatternCount();
-    // 设置消息处理回调
+
+    // setup callbacks for channels and patterns
     void m_setupCallbacks();
 
 private:
-    // 消息循环
+    // message loop for processing incoming messages
     void m_messageLoop();
 
 private:
